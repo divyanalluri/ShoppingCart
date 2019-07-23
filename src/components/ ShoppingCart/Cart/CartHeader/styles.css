@@ -1,0 +1,24 @@
+.cart-image-cart {
+  display: flex;
+  width: 500px;
+  height: 200px;
+  color: white;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+.cartimage {
+  width: 50px;
+  height: 50px;
+}
+.no-of-cart-items {
+  width: 15px;
+  height: 15px;
+  border-radius: 7.5px;
+  background-color: yellow;
+  position: absolute;
+  top: 110px;
+  color: black;
+  left: 250px;
+}

@@ -1,0 +1,17 @@
+.product-display {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid white;
+  margin-top: 15px;
+  position: relative;
+}
+
+.product-display:hover {
+  border: 1px solid black;
+}
+.product-display:hover .add-to-cart-button {
+  background-color: yellow;
+  color: black;
+}

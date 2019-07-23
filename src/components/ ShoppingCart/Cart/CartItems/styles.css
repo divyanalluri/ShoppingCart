@@ -1,0 +1,6 @@
+.all-items-in-cart {
+  display: flex;
+  align-items: center;
+  justify-content: column;
+  height: 1000px;
+}

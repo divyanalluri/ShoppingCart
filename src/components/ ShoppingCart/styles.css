@@ -1,0 +1,6 @@
+.shopping {
+  display: flex;
+  position: absolute;
+  top: 40px;
+  left: 10px;
+}

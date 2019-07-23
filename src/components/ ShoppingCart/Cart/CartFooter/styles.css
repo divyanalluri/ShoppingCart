@@ -1,0 +1,38 @@
+.total-price {
+  color: yellow;
+  margin-right: 20px;
+}
+.subtotal {
+  display: flex;
+  justify-content: space-between;
+  color: #303030;
+  margin-top: 100px;
+  margin-left: 30px;
+}
+.cart-footer {
+  display: flex;
+  flex-direction: column;
+}
+.checkout-button {
+  width: 450px;
+  height: 50px;
+  background-color: #303030;
+  color: white;
+  text-align: center;
+  margin-top: 30px;
+  margin-left: 30px;
+  display: flex;
+  text-align: center;
+  border: 0px;
+  cursor: pointer;
+}
+.checkout {
+  margin-left: 200px;
+  margin-top: 20px;
+}
+.total-installments {
+  text-align: right;
+  color: #303030;
+  margin-top: 5px;
+  margin-right: 20px;
+}
