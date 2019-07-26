@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
-import "./styles.css";
+import { Errors } from "./StyledComponents";
 @observer
 class Error extends Component {
   render() {
-    return <div className="error">Something went Wrong</div>;
+    return <Errors className="error">Something went Wrong</Errors>;
   }
 }
 export default Error;

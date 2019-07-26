@@ -2,34 +2,20 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
 
-import "./styles.css";
 import ProductImage from "./ProductImage";
 import ProductName from "./ProductName";
 import ProductPrice from "./ProductPrice";
 import ProductFooter from "./ProductFooter";
-
+import { ProductDisplay } from "./StyledComponents";
 @observer
 class Product extends Component {
-  renderProducts = () => {
-    return this.props.shoppingstore.sortedFilterProducts.map(product => (
-      <div className="product-display">
-        <ProductImage
-          image={product.image}
-          isFreeShipping={product.isFreeShipping}
-        />
-        <ProductName title={product.title} />
-        <ProductPrice
-          price={product.price}
-          installments={product.installments}
-          currencyFormat={product.currencyFormat}
-        />
-        <ProductFooter
-          shoppingstore={this.props.shoppingstore}
-          cartstore={this.props.cartstore}
-          id={product.id}
-        />
-      </div>
-    ));
+  state = {
+    hover: false
+  };
+  onMouse = () => {
+    this.setState(prevState => ({
+      hover: !prevState.hover
+    }));
   };
 
   render() {
@@ -39,10 +25,27 @@ class Product extends Component {
       title,
       price,
       currencyFormat,
-      installments
-    } = this.props.shoppingstore.productList;
-    console.log(this.title);
-    return <div className="products-list">{this.renderProducts()}</div>;
+      installments,
+      id
+    } = this.props.product;
+    return (
+      <div className="products-list">
+        <ProductDisplay onMouseEnter={this.onMouse} onMouseLeave={this.onMouse}>
+          <ProductImage image={image} isFreeShipping={isFreeShipping} />
+          <ProductName title={title} />
+          <ProductPrice
+            price={price}
+            installments={installments}
+            currencyFormat={currencyFormat}
+          />
+          <ProductFooter
+            shoppingstore={this.props.shoppingstore}
+            id={id}
+            hover={this.state.hover}
+          />
+        </ProductDisplay>
+      </div>
+    );
   }
 }
 export default Product;

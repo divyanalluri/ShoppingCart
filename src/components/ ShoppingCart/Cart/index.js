@@ -2,7 +2,15 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
 
-import "./styles.css";
+import {
+  CartInfo,
+  Count,
+  DisplayCart,
+  CartImage,
+  CartImageAfter,
+  DefaultMessage,
+  Div
+} from "./StyledComponets";
 import CartItems from "./CartItems";
 import CartHeader from "./CartHeader";
 import CartFooter from "./CartFooter";
@@ -11,7 +19,8 @@ class Cart extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      class: "cart-image"
+      class: "cart-image",
+      classes: "display-cart"
     };
   }
   onClick = () => {
@@ -24,42 +33,65 @@ class Cart extends Component {
         class: "cart-image"
       });
     }
-    var element = document.getElementById("display-cart");
-    element.classList.toggle("cart-items");
+    if (this.state.classes == "display-cart") {
+      this.setState({
+        classes: "cart-items"
+      });
+    } else {
+      this.setState({
+        classes: "display-cart"
+      });
+    }
   };
   render() {
     return (
-      <div className="cart" id="cart">
+      <CartInfo className="cart" id="cart">
         {this.state.class == "cart-image" ? (
-          <div>
-            <img
+          <Div>
+            <CartImage
               src="assets/cart.jpg"
               alt="cartimage"
               id="cart-image"
               className="cart-image"
               onClick={this.onClick}
             />
-            <div className="count">
+            <Count className="count">
               {this.props.shoppingstore.cartstore.totalProducts}
-            </div>
-          </div>
+            </Count>
+          </Div>
         ) : (
-          <div>
-            <button className="cart-image-after" onClick={this.onClick}>
+          <Div>
+            <CartImageAfter className="cart-image-after" onClick={this.onClick}>
               X
-            </button>
-          </div>
+            </CartImageAfter>
+          </Div>
         )}
-        <div className="display-cart" id="display-cart">
-          <CartHeader shoppingstore={this.props.shoppingstore} />
-          {this.props.shoppingstore.cartstore.totalProducts > 0 ? (
-            <CartItems shoppingstore={this.props.shoppingstore} />
-          ) : (
-            <div className="default-message">Add some products in the cart</div>
-          )}
-          <CartFooter shoppingstore={this.props.shoppingstore} />
-        </div>
-      </div>
+        {this.state.classes == "display-cart" ? (
+          <DisplayCart>
+            <CartHeader shoppingstore={this.props.shoppingstore} />
+            {this.props.shoppingstore.cartstore.totalProducts > 0 ? (
+              <CartItems shoppingstore={this.props.shoppingstore} />
+            ) : (
+              <DefaultMessage className="default-message">
+                Add some products in the cart
+              </DefaultMessage>
+            )}
+            <CartFooter shoppingstore={this.props.shoppingstore} />
+          </DisplayCart>
+        ) : (
+          <DisplayCart display>
+            <CartHeader shoppingstore={this.props.shoppingstore} />
+            {this.props.shoppingstore.cartstore.totalProducts > 0 ? (
+              <CartItems shoppingstore={this.props.shoppingstore} />
+            ) : (
+              <DefaultMessage className="default-message">
+                Add some products in the cart
+              </DefaultMessage>
+            )}
+            <CartFooter shoppingstore={this.props.shoppingstore} />
+          </DisplayCart>
+        )}
+      </CartInfo>
     );
   }
 }

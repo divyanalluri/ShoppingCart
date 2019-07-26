@@ -1,9 +1,17 @@
 import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
-
-import "./styles.css";
-
+import { Div } from "../../../../ ShoppingCart/StyledComponents";
+import {
+  CartItemDisplay,
+  ImageInCart,
+  DeleteButton,
+  ProductTitle,
+  StrikeText,
+  PriceSize,
+  Quantity,
+  Price
+} from "./StyledComponets";
 @observer
 class CartItem extends Component {
   constructor(state) {
@@ -24,47 +32,47 @@ class CartItem extends Component {
   };
   render() {
     return (
-      <div className="cart-item-display">
-        <div className="image-in-cart">
-          <img className="image-in-cart" src={this.props.product.image} />
-        </div>
-        <div onMouseOver={this.onmouse} onMouseLeave={this.onmouse}>
-          <button className="delete-button" onClick={this.delete}>
-            X
-          </button>
-        </div>
-        <div>
-          <div className="product-title">
+      <Div>
+        <CartItemDisplay>
+          <Div>
+            <ImageInCart src={this.props.product.image} />
+          </Div>
+          <Div onMouseOver={this.onmouse} onMouseLeave={this.onmouse}>
+            <DeleteButton onClick={this.delete}>X</DeleteButton>
+          </Div>
+          <Div>
+            <ProductTitle>
+              {!this.state.hover ? (
+                <Div>{this.props.product.title}</Div>
+              ) : (
+                <StrikeText>{this.props.product.title}</StrikeText>
+              )}
+            </ProductTitle>
             {!this.state.hover ? (
-              <div>{this.props.product.title}</div>
+              <PriceSize>
+                {this.props.product.availableSizes[0]}
+                <Price>
+                  {this.props.product.currencyFormat}
+                  {this.props.product.price}
+                </Price>
+              </PriceSize>
             ) : (
-              <strike>{this.props.product.title}</strike>
+              <PriceSize>
+                <StrikeText>{this.props.product.availableSizes[0]}</StrikeText>
+                <StrikeText>
+                  {this.props.product.currencyFormat}
+                  {this.props.product.price}
+                </StrikeText>
+              </PriceSize>
             )}
-          </div>
-          {!this.state.hover ? (
-            <div className="price-sizes">
-              {this.props.product.availableSizes[0]}
-              <div className="price">
-                {this.props.product.currencyFormat}
-                {this.props.product.price}
-              </div>
-            </div>
-          ) : (
-            <div className="price-sizes">
-              <strike>{this.props.product.availableSizes[0]}</strike>
-              <strike className="price">
-                {this.props.product.currencyFormat}
-                {this.props.product.price}
-              </strike>
-            </div>
-          )}
-          {!this.state.hover ? (
-            <div className="quantity">Quantity:{this.props.quantity}</div>
-          ) : (
-            <strike className="quantity">Quantity:{this.props.quantity}</strike>
-          )}
-        </div>
-      </div>
+            {!this.state.hover ? (
+              <Quantity>Quantity:{this.props.quantity}</Quantity>
+            ) : (
+              <StrikeText>Quantity:{this.props.quantity}</StrikeText>
+            )}
+          </Div>
+        </CartItemDisplay>
+      </Div>
     );
   }
 }

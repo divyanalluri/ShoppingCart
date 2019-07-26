@@ -3,6 +3,8 @@ import { observer } from "mobx-react";
 import { observable } from "mobx";
 
 //import "./styles.css";
+import { AllCartItems } from "./StyledComponets";
+import { Div } from "../../../ ShoppingCart/StyledComponents";
 import CartItem from "./CartItem";
 @observer
 class CartItems extends Component {
@@ -11,18 +13,24 @@ class CartItems extends Component {
     let cartItems = this.props.shoppingstore.cartstore.productsInCart;
     for (const v of cartItems.values()) {
       samplearray.push(
-        <CartItem
-          quantity={v.quantity}
-          product={v.product}
-          shoppingstore={this.props.shoppingstore}
-          key={v.product.id}
-        />
+        <Div>
+          <CartItem
+            quantity={v.quantity}
+            product={v.product}
+            shoppingstore={this.props.shoppingstore}
+            key={v.product.id}
+          />
+        </Div>
       );
     }
     return samplearray;
   };
   render() {
-    return <div className="all-items-in-cart">{this.generate()}</div>;
+    return (
+      <AllCartItems className="all-items-in-cart">
+        {this.generate()}
+      </AllCartItems>
+    );
   }
 }
 export default CartItems;

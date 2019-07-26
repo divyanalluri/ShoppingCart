@@ -2,26 +2,26 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
 
-import "./styles.css";
-
+import { ProductPrices } from "./StyledComponents";
+import { Div } from "../../../../ ShoppingCart/StyledComponents";
 class ProductPrice extends Component {
   calculate = () => {
     return (this.props.price / this.props.installments).toFixed(2);
   };
   render() {
     return (
-      <div className="product-price">
-        <div>
+      <ProductPrices>
+        <Div>
           {this.props.currencyFormat}
           {this.props.price}
-        </div>
+        </Div>
         {this.props.installments > 0 ? (
-          <div>
+          <Div>
             or {this.props.installments} x{this.props.currencyFormat}
             {this.calculate()}
-          </div>
+          </Div>
         ) : null}
-      </div>
+      </ProductPrices>
     );
   }
 }

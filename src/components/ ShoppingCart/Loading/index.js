@@ -2,16 +2,16 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
 
-import "./styles.css";
+import { LoadingSymbol, LoaderClass } from "./StyledComponents";
 @observer
 class Loading extends Component {
   render() {
     return (
-      <div className="loader-class">
+      <LoaderClass>
         <center>
-          <div className="loader" />
+          <LoadingSymbol className="loader" />
         </center>
-      </div>
+      </LoaderClass>
     );
   }
 }

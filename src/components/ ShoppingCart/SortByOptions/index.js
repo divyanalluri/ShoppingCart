@@ -2,7 +2,8 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
 
-import "./styles.css";
+import { Header, SortByOption, Option } from "./StyledComponents";
+import { Div } from "../../ ShoppingCart/StyledComponents";
 @observer
 class SortByOptions extends Component {
   handleOrderBy = e => {
@@ -10,20 +11,20 @@ class SortByOptions extends Component {
   };
   render() {
     return (
-      <div className="header">
-        <div>
+      <Header className="header">
+        <Div>
           {this.props.shoppingstore.sortedFilterProducts.length} Product(s)
           found
-        </div>
-        <div>
+        </Div>
+        <Div>
           Order By:
-          <select className="sortby-options" onChange={this.handleOrderBy}>
-            <option value="select">select</option>
-            <option value="Lowest to Highest">Lowest to Highest</option>
-            <option value="Highest to Lowest">Highest to Lowest</option>
-          </select>
-        </div>
-      </div>
+          <SortByOption onChange={this.handleOrderBy}>
+            <Option value="select">select</Option>
+            <Option value="Lowest to Highest">Lowest to Highest</Option>
+            <Option value="Highest to Lowest">Highest to Lowest</Option>
+          </SortByOption>
+        </Div>
+      </Header>
     );
   }
 }

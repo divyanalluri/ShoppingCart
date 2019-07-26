@@ -2,7 +2,15 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
 
-import "./styles.css";
+import {
+  CartFooterCart,
+  Div,
+  CheckoutButton,
+  TotalPrice,
+  TotalInstallments,
+  SubTotal,
+  Checkout
+} from "./StyledComponets";
 @observer
 class CartFooter extends Component {
   calculate = () => {
@@ -13,26 +21,26 @@ class CartFooter extends Component {
   };
   render() {
     return (
-      <div className="cart-footer">
-        <div className="subtotal">
-          <div>SUBTOTAL</div>
-          <div className="total-price">
+      <CartFooterCart className="cart-footer">
+        <SubTotal className="subtotal">
+          <Div>SUBTOTAL</Div>
+          <TotalPrice className="total-price">
             ${this.props.shoppingstore.cartstore.totalPrice}
-          </div>
-        </div>
+          </TotalPrice>
+        </SubTotal>
         {this.props.shoppingstore.cartstore.installments > 0 ? (
-          <div className="total-installments">
+          <TotalInstallments className="total-installments">
             OR UP TO {this.props.shoppingstore.cartstore.installments}*
             {this.calculate()}
-          </div>
+          </TotalInstallments>
         ) : null}
 
-        <div>
-          <div className="checkout-button">
-            <center className="checkout">CHECKOUT</center>
-          </div>
-        </div>
-      </div>
+        <Div>
+          <CheckoutButton className="checkout-button">
+            <Checkout className="checkout">CHECKOUT</Checkout>
+          </CheckoutButton>
+        </Div>
+      </CartFooterCart>
     );
   }
 }

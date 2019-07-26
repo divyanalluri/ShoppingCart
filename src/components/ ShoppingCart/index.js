@@ -6,28 +6,27 @@ import FilteringSideBar from "./FilteringSideBar";
 import SortByOptions from "./SortByOptions";
 import Products from "./Products";
 import Cart from "./Cart";
-import "./styles.css";
-
+import { Div, Shopping } from "./StyledComponents";
 class ShoppingCart extends Component {
   render() {
     return (
-      <div className="shopping-cart">
-        <div>
+      <Div className="shopping-cart">
+        <Div>
           <Cart shoppingstore={this.props.shoppingstore} />
-        </div>
-        <div className="shopping">
-          <div>
+        </Div>
+        <Shopping className="shopping">
+          <Div>
             <FilteringSideBar shoppingstore={this.props.shoppingstore} />
-          </div>
-          <div>
+          </Div>
+          <Div>
             <SortByOptions shoppingstore={this.props.shoppingstore} />
             <Products
               shoppingstore={this.props.shoppingstore}
               cartstore={this.props.cartstore}
             />
-          </div>
-        </div>
-      </div>
+          </Div>
+        </Shopping>
+      </Div>
     );
   }
 }

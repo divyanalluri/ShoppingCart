@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
 
-import "./styles.css";
-
+import { ProductTitle } from "./StyledComponents";
 class ProductName extends Component {
   render() {
-    return <div className="product-title">{this.props.title}</div>;
+    return (
+      <ProductTitle className="product-title">{this.props.title}</ProductTitle>
+    );
   }
 }
 export default ProductName;

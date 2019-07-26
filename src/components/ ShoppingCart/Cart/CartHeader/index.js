@@ -2,20 +2,23 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { observable } from "mobx";
 
-import "./styles.css";
-
+import { CartImageCart, NoOfItems, Div, Cartimage } from "./StyledComponets";
 class CartHeader extends Component {
   render() {
     return (
-      <div className="cart-image-cart">
-        <div className="">
-          <img src="assets/cart.jpg" alt="cartimage" className="cartimage" />
-        </div>
-        <div>Cart</div>
-        <div className="no-of-cart-items">
+      <CartImageCart>
+        <Div className="">
+          <Cartimage
+            src="assets/cart.jpg"
+            alt="cartimage"
+            className="cartimage"
+          />
+        </Div>
+        <Div>Cart</Div>
+        <NoOfItems className="no-of-cart-items">
           {this.props.shoppingstore.cartstore.totalProducts}
-        </div>
-      </div>
+        </NoOfItems>
+      </CartImageCart>
     );
   }
 }

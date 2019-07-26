@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import { observer } from "mobx-react";
 import { observable, action } from "mobx";
 
-import "./styles.css";
 import { sizes } from "./constants";
+import { Button, SelectedButton, FilterButtons } from "./StyledComponents";
+
 @observer
 class FilterBySize extends Component {
   @action
@@ -17,22 +18,18 @@ class FilterBySize extends Component {
   renderButtons = () => {
     return sizes.map(size =>
       this.props.shoppingstore.selectedSizes.includes(size) ? (
-        <button
-          onClick={this.onClickRemove}
-          value={size}
-          className="selected-button"
-        >
+        <SelectedButton onClick={this.onClickRemove} value={size}>
           {size}
-        </button>
+        </SelectedButton>
       ) : (
-        <button onClick={this.onClick} value={size} className="size-buttons">
+        <Button onClick={this.onClick} value={size}>
           {size}
-        </button>
+        </Button>
       )
     );
   };
   render() {
-    return <div className="size-filter">{this.renderButtons()}</div>;
+    return <FilterButtons>{this.renderButtons()}</FilterButtons>;
   }
 }
 export default FilterBySize;
